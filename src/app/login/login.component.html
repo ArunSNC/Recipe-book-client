@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <div class="alert alert-danger" *ngIf="error">
+            {{ error }}
+        </div>
+        <div class="alert alert-success" *ngIf="success">
+            {{ success }}
+        </div>
+        <div *ngIf="isLoading">
+            <app-spinner></app-spinner>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <input formControlName="username" type="text" placeholder="Username" class="form-control">
+                <span class="help-block" *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">Username is invalid</span>
+            </div>
+            <div class="form-group">
+                <input formControlName="password" type="password" placeholder="Password" class="form-control">
+                <span class="help-block" *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">Password is invalid</span>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+                <button class="btn btn-success" type="button" [routerLink]="['..','register']">Redirect To Register</button>
+            </div>
+        </form>
+    </div>
+</div>
