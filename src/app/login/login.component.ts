@@ -1,12 +1,16 @@
 import { Router } from '@angular/router';
-import { AppService } from './../app.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
 
 export interface Token {
+  message: string;
   token: string;
+  id: string;
+  iat: string;
+  exp: string;
+  success: boolean;
 }
 
 
@@ -22,7 +26,7 @@ export class LoginComponent implements OnInit {
   error = null;
   success = '';
 
-  constructor(private auth:AuthService, private appService: AppService, private router: Router) { }
+  constructor(private auth:AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -37,13 +41,9 @@ export class LoginComponent implements OnInit {
       this.isLoading = false;
       if(response.success){
         this.success = response.message;
-        this.appService.setToken(response.token as unknown as Token);
-        setTimeout(() => {
-
         this.loginForm.reset();
         this.success = '';
         this.router.navigateByUrl('/recipes');
-        },3000);
       }
     }, err => {
       this.isLoading = false;

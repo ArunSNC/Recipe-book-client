@@ -1,4 +1,3 @@
-import { AppService } from './../app.service';
 import { RecipeService } from './../recipes/recipe.service';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -7,14 +6,8 @@ import { map, tap, toArray } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService{
-    constructor(private http:HttpClient, private recipeService: RecipeService, private appService: AppService){}
+    constructor(private http:HttpClient, private recipeService: RecipeService){}
 
-
-    setHeaders(){
-        var headers = new Headers();
-        headers.append('Authorization', this.appService.getToken() as unknown as string);
-        return headers;
-    }
 
     storeRecipes(){
         const recipes = this.recipeService.getRecipes();
@@ -28,7 +21,6 @@ export class DataStorageService{
 
     fetchRecipes(){
         console.log('Fetching recipes..');
-        console.log(this.setHeaders());
         let i = 0;
         let filteredRecipes: any;
         return this.http.get<any[]>('http://localhost:1337/api/recipes')
