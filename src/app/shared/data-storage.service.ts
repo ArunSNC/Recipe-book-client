@@ -13,7 +13,7 @@ export class DataStorageService{
         const recipes = this.recipeService.getRecipes();
         recipes.forEach(recipe => {
             let filteredRecipes = _.omit(recipe, ['id'])
-            this.http.post('http://localhost:1337/api/add/recipes',filteredRecipes).subscribe(data => {
+            this.http.post('http://localhost:1337/api/add/recipes',filteredRecipes, { responseType: 'json' }).subscribe(data => {
                 console.log(data);
             })
         })
@@ -23,7 +23,7 @@ export class DataStorageService{
         console.log('Fetching recipes..');
         let i = 0;
         let filteredRecipes: any;
-        return this.http.get<any[]>('http://localhost:1337/api/recipes')
+        return this.http.get<any[]>('http://localhost:1337/api/recipes', { responseType: 'json' })
         .pipe(map((recipes) => {
             let recipe = _.pick(recipes, ['recipes'])
             for(let item in recipe){

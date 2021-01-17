@@ -22,12 +22,15 @@ export class AuthService{
     constructor(private http:HttpClient, private router: Router){}
 
     registerUser(registerData: any){
-        return this.http.post<registerResponseData>('http://localhost:1337/api/user/register', registerData)
+        return this.http.post<registerResponseData>('http://localhost:1337/api/user/register', registerData, {
+            observe: 'body',
+            responseType: 'json'
+        })
         .pipe(catchError(this.handleError));
     }
 
     loginUser(loginData: any){
-        return this.http.post<Token>('http://localhost:1337/api/user/login', loginData)
+        return this.http.post<Token>('http://localhost:1337/api/user/login', loginData , { responseType: 'json' })
         .pipe(catchError(this.handleError), tap(resData => this.handleAuth(resData.id, resData.token, resData.iat, resData.exp, resData.success)));;
     }
 
