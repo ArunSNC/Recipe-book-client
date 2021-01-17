@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'shopping-list';
 
-  switch: boolean = true;
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
-
-  onNavItemSelected(evt: any):void{
-   evt.value == "recipe" ? this.switch = true : this.switch = false
+  ngOnInit() {
+    this.authService.autoLogin();
   }
+
 }

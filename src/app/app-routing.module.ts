@@ -8,10 +8,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { RecipesComponent } from './recipes/recipes.component';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { AuthGaurd } from './auth.gaurd';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full'},
-  { path: 'recipes', component: RecipesComponent, resolve: [RecipeResolverService], children: [
+  { path: '', redirectTo: 'recipes', pathMatch: 'full'},
+  { path: 'recipes', component: RecipesComponent, canActivate: [AuthGaurd] ,resolve: [RecipeResolverService], children: [
     {path : '', component: LoadingComponent},
     {path: 'details', component: RecipeDetailComponent},
     {path : 'update', component: RecipeEditComponent},
