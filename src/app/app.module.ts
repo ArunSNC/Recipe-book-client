@@ -20,8 +20,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
-import { ToastrModule } from 'ngx-toastr';
-import { ToastComponent } from './shared/toast/toast.component';
+// import { ToastrModule } from 'ngx-toastr';
+// import { ToastComponent } from './shared/toast/toast.component';
+import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceholderDirective } from './shared/placeholder.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ToastComponent } from './shared/toast/toast.component';
     LoginComponent,
     RegisterComponent,
     SpinnerComponent,
-    ToastComponent,
+    // ToastComponent,
+    AlertComponent,
+    PlaceholderDirective,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,7 @@ import { ToastComponent } from './shared/toast/toast.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    // ToastrModule.forRoot()
   ],
   providers: [ShoppingService, RecipeService, {
     provide: HTTP_INTERCEPTORS,
