@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.success = response.message;
         this.loginForm.reset();
         this.success = '';
-        this.router.navigateByUrl('/recipes');
+        this.router.navigate(['recipes']);
       }
     }, err => {
       this.isLoading = false;

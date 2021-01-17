@@ -7,41 +7,26 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { LoadingComponent } from './shared/loading/loading.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
-// import { ToastrModule } from 'ngx-toastr';
-// import { ToastComponent } from './shared/toast/toast.component';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder.directive';
+import { RecipesModule } from './recipes/recipes.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
     DropdownDirective,
     LoadingComponent,
-    RecipeEditComponent,
     LoginComponent,
     RegisterComponent,
     SpinnerComponent,
-    // ToastComponent,
     AlertComponent,
     PlaceholderDirective,
   ],
@@ -51,7 +36,8 @@ import { PlaceholderDirective } from './shared/placeholder.directive';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    // ToastrModule.forRoot()
+    RecipesModule,
+    ShoppingListModule
   ],
   providers: [ShoppingService, RecipeService, {
     provide: HTTP_INTERCEPTORS,
