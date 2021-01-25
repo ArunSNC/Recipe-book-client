@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: deployment_loadbalancer
+  labels:
+    type: deployment
+spec:
+  type: LoadBalancer
+  ports:
+    - name: deployment_port
+      port: 80
+      protocol: Tcp
+  selector:
+    type: amd64/linux
